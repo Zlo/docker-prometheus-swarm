@@ -48,9 +48,12 @@ services:
           memory: 16M
 
   docker-exporter:
-    image: basi/socat:${DOCKER_EXPORTER_VERSION:-v0.1.0}
+    image: basi/socat:${DOCKER_EXPORTER_VERSION:-latest}
     networks:
       - monitoring
+    environment:
+      - IN=172.17.0.1:9323
+      - OUT=4999
     deploy:
       mode: global
       resources:
